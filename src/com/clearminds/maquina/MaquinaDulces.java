@@ -14,7 +14,7 @@ public class MaquinaDulces {
 	private HashMap<Double, Integer> dineroActual;
 
 	public MaquinaDulces() {
-		this.montosValidos = new double[] { 0.01, 0.05, 0.10, 0.25, 0.50, 1.00, 5.00 };
+		this.montosValidos = new double[] { 0.01, 0.05, 0.10f, 0.25, 0.50f, 1.00f, 5.00f };
 		this.dineroActual = new HashMap<Double, Integer>();
 	}
 
@@ -149,15 +149,15 @@ public class MaquinaDulces {
 	public void recibirDinero(double monto) {
 
 		boolean isValido = false;
-
-		for (double m : montosValidos) {
-			if (m == monto) {
+		//Comparamos el monto ingresado con los montos validos
+		for (double montoValido : montosValidos) {
+			if (montoValido == monto) {
 				this.dineroIngresado += monto;
-				if(dineroActual.containsKey(m)){
-					this.dineroActual.put(m,dineroActual.get(m)+1);
+				if(dineroActual.containsKey(montoValido)){
+					this.dineroActual.put(montoValido,dineroActual.get(montoValido)+1);//Agregamos el monto a dineroActual
 				}
 				else{
-					this.dineroActual.put(m,1);
+					this.dineroActual.put(montoValido,1);
 				}
 				
 				isValido = true;
@@ -191,7 +191,7 @@ public class MaquinaDulces {
 
 		System.out.println(cambio);
 
-		// Transforma
+		// Transforma el cambio a centavos
 		double centavos = cambio / 0.01;
 
 		System.out.println(centavos);
